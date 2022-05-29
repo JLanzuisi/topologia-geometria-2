@@ -1,0 +1,16 @@
+FILENAME=Test
+
+pdf: postprocess
+	latexmk -pdflatex $(FILENAME).tex
+
+postprocess: convert metadata.tex
+	sed -E -i -e '/\\fi$$/s/\\fi/\\fi\n\\usepackage{mlmodern}/' $(FILENAME).tex
+	sed -E -i -e '/11pt/s/11pt/12pt/' $(FILENAME).tex
+	sed -E -i -e '/article/s/article/scrartcl/' $(FILENAME).tex
+	sed -E -i -e '/\\title/s/\\title.*/\\input{preamble.tex}/' $(FILENAME).tex
+	sed -E -i -e '/titling/d' $(FILENAME).tex
+	sed -E -i -e '/\\usepackage\{parskip\}/d' $(FILENAME).tex
+
+convert: $(FILENAME).ipynb
+	jupyter nbconvert --to latex $(FILENAME).ipynb
+
