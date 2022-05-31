@@ -1,9 +1,9 @@
-FILENAME=Test
+FILENAME=Tarea1
 
 pdf: postprocess
 	latexmk -pdflatex $(FILENAME).tex
 
-postprocess: convert metadata.tex
+postprocess: convert preamble.tex
 	sed -E -i -e '/\\fi$$/s/\\fi/\\fi\n\\usepackage{mlmodern}/' $(FILENAME).tex
 	sed -E -i -e '/11pt/s/11pt/12pt/' $(FILENAME).tex
 	sed -E -i -e '/article/s/article/scrartcl/' $(FILENAME).tex
