@@ -1,0 +1,444 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  spanish,
+  toc=flat]{scrartcl}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Tarea 4},
+  pdfauthor={Jhonny Lanzuisi},
+  pdflang={es-ES},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontfamily=mlmr,frame=leftline,numbers=left,numbersep=2.5pt}
+
+\setlength{\fboxsep}{5pt}
+\setlength{\columnsep}{20pt}
+
+\setkomafont{title}{\normalfont\sffamily}
+\setkomafont{disposition}{\normalfont\sffamily}
+\setkomafont{subtitle}{\normalfont\large\sffamily}
+\setkomafont{section}{\normalfont\Large\sffamily}
+\setkomafont{subsection}{\normalfont\large\sffamily}
+
+\titlehead{Universidad Simón Bolívar\hfill Matemáticas Puras y Aplicadas}
+\usepackage{mlmodern}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\else
+  \usepackage[shorthands=off,main=spanish]{babel}
+\fi
+
+\title{Tarea 4}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Topología y Geometría II}
+\author{Jhonny Lanzuisi}
+\date{23 de Junio de 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ sympy }\ImportTok{as}\NormalTok{ sym}
+
+\KeywordTok{def}\NormalTok{ lp(input\_list):}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ input\_list:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}$$\textquotesingle{}} \OperatorTok{+}\NormalTok{ sym.latex(i) }\OperatorTok{+} \StringTok{\textquotesingle{}$$\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{primera-pregunta}{%
+\section{Primera pregunta}\label{primera-pregunta}}
+
+Veamos los coeficientes de la primera forma fundamental en un punto
+\(p\).
+
+Calculemos primero \(\phi_u\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a,u,v,b }\OperatorTok{=}\NormalTok{ sym.symbols(}\StringTok{\textquotesingle{}a,u,v,b\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{phi }\OperatorTok{=}\NormalTok{ sym.Matrix([}
+\NormalTok{              a}\OperatorTok{*}\NormalTok{u}\OperatorTok{*}\NormalTok{sym.cosh(v),}
+\NormalTok{              b}\OperatorTok{*}\NormalTok{u}\OperatorTok{*}\NormalTok{sym.sinh(v),}
+\NormalTok{              u}\OperatorTok{**}\DecValTok{2}
+\NormalTok{])}
+
+\NormalTok{phi\_u }\OperatorTok{=}\NormalTok{ sym.Derivative(phi, u)}
+
+\NormalTok{lp([phi\_u.doit()])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}a \cosh{\left(v \right)}\\b \sinh{\left(v \right)}\\2 u\end{matrix}\right]\]
+
+Luego \(\varphi_v\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phi\_v }\OperatorTok{=}\NormalTok{ sym.Derivative(phi, v)}
+
+\NormalTok{lp([phi\_v.doit()])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}a u \sinh{\left(v \right)}\\b u \cosh{\left(v \right)}\\0\end{matrix}\right]\]
+
+El primer coficiente \(E(u,u) = \langle \varphi_u,\varphi_u\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E }\OperatorTok{=}\NormalTok{ phi\_u.doit().dot(phi\_u.doit())}
+
+\NormalTok{lp([E])}
+\end{Highlighting}
+\end{Shaded}
+
+\[a^{2} \cosh^{2}{\left(v \right)} + b^{2} \sinh^{2}{\left(v \right)} + 4 u^{2}\]
+
+El segundo coeficiente \(F(u,v) = \langle \phi_u,\phi_v\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F }\OperatorTok{=}\NormalTok{ phi\_u.doit().dot(phi\_v.doit())}
+
+\NormalTok{lp([F])}
+\end{Highlighting}
+\end{Shaded}
+
+\[a^{2} u \sinh{\left(v \right)} \cosh{\left(v \right)} + b^{2} u \sinh{\left(v \right)} \cosh{\left(v \right)}\]
+
+Y el tercer coeficiente \(G(v,v) = \langle\phi_v,\phi_v\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{G }\OperatorTok{=}\NormalTok{ phi\_v.doit().dot(phi\_v.doit())}
+
+\NormalTok{lp([G])}
+\end{Highlighting}
+\end{Shaded}
+
+\[a^{2} u^{2} \sinh^{2}{\left(v \right)} + b^{2} u^{2} \cosh^{2}{\left(v \right)}\]
+
+Entonces, dado un vector \(\omega\in T_p S\) escrito en la base de
+\(T_p S\) inducida por \(\varphi\),
+\(\omega = r\varphi_u + s\varphi_v\), \(I(w)\) viene dado por:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omega,r,s }\OperatorTok{=}\NormalTok{ sym.symbols(}\StringTok{\textquotesingle{}omega,r,s\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{omega }\OperatorTok{=}\NormalTok{ r}\OperatorTok{*}\NormalTok{phi\_u.doit() }\OperatorTok{+}\NormalTok{ s}\OperatorTok{*}\NormalTok{phi\_v.doit()}
+
+\NormalTok{lp([omega.dot(omega)])}
+\end{Highlighting}
+\end{Shaded}
+
+\[4 r^{2} u^{2} + \left(a r \cosh{\left(v \right)} + a s u \sinh{\left(v \right)}\right)^{2} + \left(b r \sinh{\left(v \right)} + b s u \cosh{\left(v \right)}\right)^{2}\]
+
+\hypertarget{segunda-pregunta}{%
+\section{Segunda pregunta}\label{segunda-pregunta}}
+
+Veamos los coeficientes de la primera forma fundamental.
+
+Calculemos primero \(\varphi_\rho\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rho,theta }\OperatorTok{=}\NormalTok{ sym.symbols(}\StringTok{\textquotesingle{}rho,theta\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{phi }\OperatorTok{=}\NormalTok{ sym.Matrix([}
+\NormalTok{              rho}\OperatorTok{*}\NormalTok{sym.cos(theta),}
+\NormalTok{              rho}\OperatorTok{*}\NormalTok{sym.sin(theta)}
+\NormalTok{])}
+
+\NormalTok{phi\_rho }\OperatorTok{=}\NormalTok{ sym.Derivative(phi, rho)}
+
+\NormalTok{lp([phi\_rho.doit()])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}\cos{\left(\theta \right)}\\\sin{\left(\theta \right)}\end{matrix}\right]\]
+
+Luego \(\varphi_\theta\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phi\_theta }\OperatorTok{=}\NormalTok{ sym.Derivative(phi, theta)}
+
+\NormalTok{lp([phi\_theta.doit()])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}- \rho \sin{\left(\theta \right)}\\\rho \cos{\left(\theta \right)}\end{matrix}\right]\]
+
+El primer coficiente
+\(E(\rho,\rho) = \langle \varphi_\rho,\varphi_\rho\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E }\OperatorTok{=}\NormalTok{ phi\_rho.doit().dot(phi\_rho.doit())}
+
+\NormalTok{lp([sym.simplify(E)])}
+\end{Highlighting}
+\end{Shaded}
+
+\[1\]
+
+El segundo coeficiente
+\(F(\rho,\theta) = \langle \phi_\rho,\phi_\theta\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F }\OperatorTok{=}\NormalTok{ phi\_rho.doit().dot(phi\_theta.doit())}
+
+\NormalTok{lp([F])}
+\end{Highlighting}
+\end{Shaded}
+
+\[0\]
+
+Y el tercer coeficiente
+\(G(\theta,\theta) = \langle\phi_\theta,\phi_\theta\rangle\) es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{G }\OperatorTok{=}\NormalTok{ phi\_theta.doit().dot(phi\_theta.doit())}
+
+\NormalTok{lp([sym.simplify(G)])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\rho^{2}\]
+
+Entonces, dado un vector \(\omega\in T_p S\) escrito en la base de
+\(T_p S\) inducida por \(\varphi\),
+\(\omega = r\varphi_u + s\varphi_v\), \(I(w)\) viene dado por:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{omega }\OperatorTok{=}\NormalTok{ r}\OperatorTok{*}\NormalTok{phi\_rho.doit() }\OperatorTok{+}\NormalTok{ s}\OperatorTok{*}\NormalTok{phi\_theta.doit()}
+
+\NormalTok{lp([sym.simplify(omega.dot(omega))])}
+\end{Highlighting}
+\end{Shaded}
+
+\[r^{2} + \rho^{2} s^{2}\]
+
+\hypertarget{tercera-pregunta}{%
+\section{Tercera pregunta}\label{tercera-pregunta}}
+
+Basta con ver que, al sustituir la expresión para \(\nabla f\) dada, \[
+    \langle\nabla f, v\rangle_p = df_p(v)
+\] para \(v = \varphi_u,\varphi_v\), puesto que dado un \(v\) cualquiera
+podemos escribir \(v = a\varphi_u + b\varphi_v\) y entonces:
+\begin{align*}
+    \langle\nabla f, v\rangle_p
+    &=
+    \langle\nabla f, a\varphi_u + b\varphi_v\rangle_p\\
+    &=
+    a\langle\nabla f, \varphi_u\rangle_p + b\langle\nabla f, \varphi_v\rangle_p.
+\end{align*}
+
+Notemos que \(df_p(\varphi_u) = f_u\), por un lado, y que \begin{align*}
+    \langle\nabla f, \varphi_u\rangle
+    &=
+    \left\langle
+        \frac{ f_uG - f_vF }{ EG - F^2 } \varphi_u
+        + \frac{ f_vG - f_uF }{ EG - F^2 } \varphi_v
+        ,
+        \varphi_u
+    \right\rangle \\
+    &=
+    \frac{ f_uG - f_vF }{ EG - F^2 } E
+    + \frac{ f_vG - f_uF }{ EG - F^2 } F\\
+    &=
+    \frac{ f_u (EG - F^2) }{EG - F^2}\\
+    &=
+    f_u\\
+    &=
+    df_p(\varphi_u).
+\end{align*}
+
+Ahora, se puede hacer una verificación similar para \(\varphi_v\):
+\begin{align*}
+    \langle\nabla f, \varphi_v\rangle
+    &=
+    \left\langle
+        \frac{ f_uG - f_vF }{ EG - F^2 } \varphi_u
+        + \frac{ f_vG - f_uF }{ EG - F^2 } \varphi_v
+        ,
+        \varphi_v
+    \right\rangle \\
+    &=
+    \frac{ f_uG - f_vF }{ EG - F^2 } F
+    + \frac{ f_vG - f_uF }{ EG - F^2 } G\\
+    &=
+    \frac{ f_v (EG - F^2) }{EG - F^2}\\
+    &=
+    f_v\\
+    &=
+    df_p(\varphi_v).
+\end{align*}
+
+\hypertarget{cuarta-pregunta}{%
+\section{Cuarta pregunta}\label{cuarta-pregunta}}
+
+\hypertarget{primera-parte}{%
+\subsection{Primera parte}\label{primera-parte}}
+
+Supongamos que \(S_1\) es orientable. Entonces existe una familia de
+parametrizaciones \(\{\varphi_\alpha\}\),
+\(\varphi_\alpha\colon U_\alpha\to S_1\), que cubre a \(S_1\) tal que si
+\(p\in \varphi_\alpha(U_\alpha)\cap\varphi_\beta(U_\beta)\) entonces la
+función de cambio de variable \(\varphi_\beta^{-1}\circ\varphi_\alpha\)
+es tal que \(\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0\).
+
+Consideremos la familia de parametrizaciones de \(S_2\) dada por
+\(\{f\circ\varphi_\alpha\}\),
+\(f\circ\varphi_\alpha\colon U_\alpha\to S_2\). Entonces si
+\(p\in f\circ\varphi_\alpha(U_\alpha)\cap f\circ\varphi_\beta(U_\beta)\)
+la función de cambio de coordenadas viene dada por: \[
+    (f\circ\varphi_\beta)^{-1}\circ (f\circ\varphi_\alpha)
+    =
+    \varphi_\beta^{-1}\circ f^{-1}\circ f\circ\varphi_\alpha
+    =
+    \varphi_\beta^{-1}\circ\varphi_\alpha,
+\] y \(\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0\) como vimos
+antes. Por lo que \(S_2\) es orientable.
+
+Si suponemos ahora que \(S_2\) es orientable. Entonces existe una
+familia de parametrizaciones \(\{\varphi_\alpha\}\),
+\(\varphi_\alpha\colon U_\alpha\to S_2\), que cubre a \(S_2\) tal que si
+\(p\in \varphi_\alpha(U_\alpha)\cap\varphi_\beta(U_\beta)\) entonces la
+función de cambio de variable \(\varphi_\beta^{-1}\circ\varphi_\alpha\)
+es tal que \(\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0\).
+
+Consideremos la familia de parametrizaciones de \(S_1\) dada por
+\(\{f^{-1}\circ\varphi_\alpha\}\),
+\(f^{-1}\circ\varphi_\alpha\colon U_\alpha\to S_1\). Entonces si
+\(p\in f^{-1}\circ\varphi_\alpha(U_\alpha)\cap f^{-1}\circ\varphi_\beta(U_\beta)\)
+la función de cambio de coordenadas viene dada por: \[
+    (f^{-1}\circ\varphi_\beta)^{-1}\circ (f^{-1}\circ\varphi_\alpha)
+    =
+    \varphi_\beta^{-1}\circ f\circ f^{-1}\circ\varphi_\alpha
+    =
+    \varphi_\beta^{-1}\circ\varphi_\alpha,
+\] y \(\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0\) como vimos
+antes. Por lo que \(S_1\) es orientable.
+
+\hypertarget{segunda-parte}{%
+\subsection{Segunda parte}\label{segunda-parte}}
+
+La orientación inducida por \(f\) viene dada por la familia
+\(\{f\circ\varphi_\alpha\}\),
+\(f\circ\varphi_\alpha\colon U_\alpha\to S_2\), del ejercicio anterior.
+
+Como \(A\) es un operador lineal \(dA = A\) y se sigue que \[
+    det(dA) = -1,
+\] pues \(A\) es el negativo de la matriz identidad. Tenemos entonces
+que el operador \(A\) invierte la orientación.
+
+\end{document}

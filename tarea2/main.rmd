@@ -1,0 +1,227 @@
+---
+title: "Tarea 2"
+subtitle: Topología y Geometría II
+author: "Jhonny Lanzuisi"
+date: "9 de Junio de 2022"
+fontsize: 10pt
+lang: es-ES
+documentclass: scrartcl
+classoption: twocolumn,DIV=18,toc=flat
+output:
+  pdf_document:
+    number_sections: true
+    toc: true
+    toc_depth: 3
+    fig_caption: true
+    highlight: pygments
+    latex_engine: pdflatex
+    extra_dependencies: ["mlmodern","plex-mono"]
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{python}
+# Configuración de python y gráficos
+import sympy as sym
+import numpy as np
+import matplotlib.style
+import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.style.use('seaborn')
+
+matplotlib.rcParams.update({
+        'figure.autolayout': True,
+})
+
+def lp(input_list):
+    for i in input_list:
+        print('$$' + sym.latex(i) + '$$')
+```
+
+# Primera pregunta
+
+Sea $f(x, y, z) = xyz^2$.
+
+## Puntos y valores críticos
+
+Calculamos primero el diferencial, los puntos donde este no sea sobreyectivo son son puntos críticos. Las derivadas parciales de $f$ son:
+
+```{python, results='asis'}
+x,y,z,f = sym.symbols('x,y,z,f')
+
+f = x*y*z**2
+
+derivatives = [
+    sym.Derivative(f,x),
+    sym.Derivative(f,y),
+    sym.Derivative(f,z)
+]
+
+lp(
+    [
+        sym.Eq(derivatives[0], derivatives[0].doit()),
+        sym.Eq(derivatives[1], derivatives[1].doit()),
+        sym.Eq(derivatives[2], derivatives[2].doit())
+    ]
+)
+```
+
+El diferencial esta dado, en la base canonica, por:
+
+```{python, results='asis'}
+df = sym.Matrix([
+    derivatives[0],
+    derivatives[1],
+    derivatives[2]
+])
+lp([df.doit()])
+```
+
+Entonces los puntos críticos son los $(x,y,z)\in \mathbb{R}^3$ de la forma:
+$$
+    \begin{pmatrix}
+    x, y, 0
+    \end{pmatrix} \;\text{o} 
+    \begin{pmatrix}
+    0, 0, z
+    \end{pmatrix} \;\text{o}
+    \begin{pmatrix}
+    0, 0, 0
+    \end{pmatrix}.
+$$
+Y los valores críticos son la imagen de $f$ sobre las 3 clases de puntos anteriores,
+en este caso solamente el cero puesto que $f(x, y, 0) = f(0, 0, z) = f(0, 0, 0) = 0$.
+
+## Superficie regular
+
+La superficie es regular para todo punto $c$ que no sea un valor crítico, por lo que $f(x,y,z)=c$ es regular siempre que $c\neq0$.
+
+# Segunda pregunta
+
+Sea $X(u,v)= (u+v, u-v, 4uv)$.
+
+## $S$ es superficie regular
+
+Consideremos la funcion $f\colon \mathbb{R}^3\to \mathbb{R}$ dada por
+$$
+  f(x,y,z) = x^2 - y^2 - z.
+$$
+Entonces $S$ será una superficie regular siempre que $0$ no sea un valor crítico de $f$.
+
+Para verficar esto último, calculemos las derivadas parciales:
+
+```{python, results='asis'}
+f = x**2 - y**2 - z
+
+derivatives = [
+    sym.Derivative(f,x),
+    sym.Derivative(f,y),
+    sym.Derivative(f,z)
+]
+
+lp([
+    sym.Eq(derivatives[0], derivatives[0].doit()),
+    sym.Eq(derivatives[1], derivatives[1].doit()),
+    sym.Eq(derivatives[2], derivatives[2].doit())
+])
+```
+
+Entonces $f$ no tiene puntos ni valores críticos, puesto que el diferencial nunca se hace cero. En particular $0$ no es un valor crítico y $S$ es regular.
+
+## $X$ es parametrización de $S$
+
+Veamos primero el grafico de $X$ en la figura \ref{p1}.
+
+```{python, results='asis'}
+u,v = sym.symbols('u,v')
+
+x = u+v
+y = u-v
+z = 4*u*v
+
+p1 = sym.plotting.plot3d_parametric_surface(
+    x,y,z, show=False
+)
+p1.save('p1.pdf')
+```
+
+Para verificar que $X$ es una parametrizacion hay que ver que cumpla con las 3 condiciones de la definicion.
+
+### $X$ es diferenciable
+
+Consideremos las funciones componentes de $X$:
+$$
+x(u,v) = u+v,\quad y(u,v) = u-v,\quad z(u,v) = 4uv.
+$$
+Estas funciones son $C^\infty$ puesto que son polinomicas. Se sigue entonces que $X$ es diferenciable.
+
+###  $X$ es homeomorfismo
+
+Basta con ver que $X^{-1}\colon \mathbb{R}^3\to\mathbb{R}^2$ es continua.
+
+Primeros, hallemos la función inversa. Esto equivale a resolver el siguiente
+sistema de ecuaciones:
+$$
+    x = u+v,\quad y = u-v,\quad z = 4uv,\quad z=x^2-y^2.
+$$
+
+De las primeras dos ecuaciones tenemos que 
+$$
+    u = \frac{x+y}{2},
+$$
+y sustituyendo en la expresión para $z$ se obtiene:
+$$
+    v = \frac{z}{2(x+y)},
+$$
+finalmente, al sustituir $z=x^2-y^2$ en la ecuación anterior
+$$
+    v = \frac{x-y}{2}
+$$
+
+Entonces la función inversa $X^{-1}$
+viene dada por:
+$$
+    X^{-1}(x,y,z) = \left( \frac{x+y}{2} , \frac{x-y}{2} \right).
+$$
+
+Esta función es continua puesto que sus componentes son funciones
+continuas. Luego, $X$ es homeomorfismo.
+
+### $X$ es regular
+
+La condición de regularidad equivale a que las columnas
+del diferencial de $X$ sean linealmente independientes.
+Calculemos el diferencial.
+
+```{python, results='asis'}
+u,v = sym.symbols('u,v')
+
+dX = sym.Matrix([
+    [x.diff(u), x.diff(v)],
+    [y.diff(u), y.diff(v)],
+    [z.diff(u), z.diff(v)],
+])
+
+lp([dX])
+```
+
+Como dos vectores son linealmente independientes si uno
+no es múltiplo escalar del otro, se sigue que las columnas
+del diferencial son independientes, pues el $-1$ en la segunda
+columna hace que siempre difieran por un signo, y que $X$ es regular.
+
+Se tiene entonces que $X$ es una parametrización de $S$.
+
+\onecolumn
+\appendix
+# Gráficos
+
+```{r, echo=FALSE, out.width='100%', fig.cap="\\label{p1} Gráfico de $X(u,v)=(u+v, u-v, 4uv)$"}
+knitr::include_graphics("p1.pdf")
+```

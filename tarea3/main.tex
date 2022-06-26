@@ -1,0 +1,393 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  spanish,
+  twocolumn,DIV=18,toc=flat]{scrartcl}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Tarea 3},
+  pdfauthor={Jhonny Lanzuisi},
+  pdflang={es-ES},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontfamily=mlmr,frame=leftline,numbers=left,numbersep=2.5pt}
+
+\setlength{\fboxsep}{5pt}
+\setlength{\columnsep}{20pt}
+
+\setkomafont{title}{\normalfont\sffamily}
+\setkomafont{disposition}{\normalfont\sffamily}
+\setkomafont{subtitle}{\normalfont\large\sffamily}
+\setkomafont{section}{\normalfont\Large\sffamily}
+\setkomafont{subsection}{\normalfont\large\sffamily}
+
+\titlehead{Universidad Simón Bolívar\hfill Matemáticas Puras y Aplicadas}
+\usepackage{mlmodern}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\else
+  \usepackage[shorthands=off,main=spanish]{babel}
+\fi
+
+\title{Tarea 3}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Topología y Geometría II}
+\author{Jhonny Lanzuisi}
+\date{19 de Junio de 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Configuración de python y gráficos}
+\ImportTok{import}\NormalTok{ sympy }\ImportTok{as}\NormalTok{ sym}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.style}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ matplotlib}
+
+\NormalTok{matplotlib.style.use(}\StringTok{\textquotesingle{}seaborn\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{matplotlib.rcParams.update(\{}
+        \StringTok{\textquotesingle{}figure.autolayout\textquotesingle{}}\NormalTok{: }\VariableTok{True}\NormalTok{,}
+\NormalTok{\})}
+
+\KeywordTok{def}\NormalTok{ lp(input\_list):}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ input\_list:}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}$$\textquotesingle{}} \OperatorTok{+}\NormalTok{ sym.latex(i) }\OperatorTok{+} \StringTok{\textquotesingle{}$$\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{primera-pregunta}{%
+\section{Primera pregunta}\label{primera-pregunta}}
+
+Sean \[
+    E = \left\{\frac{x^2}{a} + \frac{y^2}{b} + \frac{z^2}{c} = 1\right\}
+    \quad
+    \text{y}
+    \quad
+    S^2 = \{x^2 + y^2 + z^2 = 1\}
+\] el elipsoide y la esfera, respectivamente.
+
+Queremos hallar una función \(f\colon S^2\to E\). Esto es lo mismo que
+decir que \(f\) debe cumplir: \[
+    \frac{f_x}{a^2} + \frac{f_y}{b^2} + \frac{f_z}{c^2} = 1.
+\]
+
+Si hacemos \(f_x=ax, f_y=by, f_z=cz\) entonces la ecuación anterior se
+cumple, tomando en cuenta que \((x,y,z)\in S^2\).
+
+Tenemos entonces la función \(f\) definida por: \[
+    f(x,y,z) = (ax, by, cz).
+\]
+
+Esta función es claramente continua y diferenciable, pues sus
+componentes lo son. Más aún, su inversa \[
+    f^{-1}(x,y,z) = \left(\frac{x}{a}, \frac{y}{b}, \frac{z}{c}\right)
+\] es igualmente continua y diferenciable siempre que \(a,c,b\) no sea
+ninguno cero, lo cual se cumple para todos los puntos del dominio.
+
+Por último, notemos que \(f\) es un mapa lineal y \(\ker f = \{0\}\) lo
+que nos dice que \(f\) es biyectiva.
+
+Tenemos entonces que \(f\) es un difeomorfismo de \(S^2\) a \(E\).
+
+\hypertarget{segunda-pregunta}{%
+\section{Segunda pregunta}\label{segunda-pregunta}}
+
+El mapa \(A\) es lineal puesto que sus componentes son mapas lineales.
+Un mapa lineal entre espacios de dimensión finita siempre es
+diferenciable, por lo que \(A\) es diferenciable.
+
+También, \(A^{-1}\) es un mapa lineal puesto que \(A=A^{-1}\).
+
+Por último el \(\ker A = \{0\}\), por lo que \(A\) tiene rango máximo y
+es biyectiva.
+
+Se tiene entonces que \(A\) es un difeomorfismo.
+
+\hypertarget{tercera-pregunta}{%
+\section{Tercera pregunta}\label{tercera-pregunta}}
+
+Hace falta comprobar las tres propiedades de toda relación de
+equivalencia.
+
+\hypertarget{reflexividad}{%
+\subsection{Reflexividad}\label{reflexividad}}
+
+Sea \(S\) una superficie regular y consideremos el difeomorfismo dado
+por la función identidad. Es claro que la identidad es biyectiva y que
+su inversa es diferenciable. Tenemos entonces que \(S\) es difeomorfa a
+si misma, que es lo que queríamos demostrar.
+
+\hypertarget{simetruxeda}{%
+\subsection{Simetría}\label{simetruxeda}}
+
+Sea \(S_1,S_2\) superficies regulares difeomorfas por una función \(f\).
+Entonces por definición \(f^{-1}\) es diferenciable y al ser \(f\) una
+biyección \(f^{-1}\) también lo es. Se cumple entonces que \(S_1\) es
+difeomorfo a \(S_2\) (por \(f\)) si, y solo si, \(S_2\) es difeomorfo a
+\(S_1\) (por \(f^{-1}\)).
+
+\hypertarget{transitividad}{%
+\subsection{Transitividad}\label{transitividad}}
+
+Sean \(S_1,S_2,S_3\) superficies regulares. Sean \(f\colon S_1\to S_2\)
+y \(g\colon S_2\to S_3\) difeomorfismos. Entonces la composición
+\(g\circ f\colon S_1\to S_3\) es un difeomorfismo, pues el hecho de que
+\(f,g\) y \(f^{-1},g^{-1}\) sean diferenciables implica que \(g\circ f\)
+y su inversa \(f^{-1}\circ g^{-1}\) son diferenciables, además la
+biyectividad de \(f,g\) implica la biyectividad de la composición.
+
+\hypertarget{cuarta-pregunta}{%
+\section{Cuarta pregunta}\label{cuarta-pregunta}}
+
+Sea \(p_0=(x_0, y_0, z_0)\). Basta con ver que \(\mathrm{d}f_{p_0}\) es
+perpendicular al plano tangente, pues la ecuación del plano esta dada
+por un vector normal y un punto del plano.
+
+Por la definición del plano tangente existe una curva
+\(\alpha:(-\epsilon,\epsilon)\to S\) tal que \(\alpha(0) = p_0\) y
+\(\alpha'(0)\) es un vector que esta en el plano tangente.
+
+Notemos que \[
+    f\circ\alpha = 0
+\] puesto que la imagen de \(f\) para cualquier punto de \(S\) es cero y
+el codominio de \(\alpha\) es \(S\).
+
+Podemos entonces, usando la regla de la cadena, calcular
+\((f\circ\alpha)'(0)\): \[
+    (f\circ\alpha)'(0) = \langle\mathrm{d}f_{\alpha(0)},\alpha'(0)\rangle,
+\] pero como \(f\circ\alpha = 0\) la derivada anterior también debe ser
+cero.
+
+Se sigue entonces que \(\mathrm{d}f_{p_0}\) es perpendicular a
+\(\alpha'(0)\) y por lo tanto al plano tangente.
+
+\hypertarget{quinta-pregunta}{%
+\section{Quinta pregunta}\label{quinta-pregunta}}
+
+El dibujo de \(\varphi\) se encuentra en la figura \ref{p1}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x,y,z,u,v,a }\OperatorTok{=}\NormalTok{ sym.symbols(}\StringTok{\textquotesingle{}x,y,z,u,v,a\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{x }\OperatorTok{=}\NormalTok{ v}\OperatorTok{*}\NormalTok{sym.cos(u)}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ v}\OperatorTok{*}\NormalTok{sym.sin(u)}
+\NormalTok{z }\OperatorTok{=}\NormalTok{ a}\OperatorTok{*}\NormalTok{u}
+
+\NormalTok{graph }\OperatorTok{=}\NormalTok{ sym.plotting.plot3d\_parametric\_surface(}
+\NormalTok{    x,y,z.subs(a,}\DecValTok{1}\NormalTok{),}
+\NormalTok{    (u,}\OperatorTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{),}
+\NormalTok{    (v,}\OperatorTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{),}
+\NormalTok{    show}\OperatorTok{=}\VariableTok{False}\NormalTok{,}
+\NormalTok{)}
+
+\NormalTok{graph.save(}\StringTok{\textquotesingle{}p1.pdf\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+El vector normal viene dado por \[
+    N(u,v)
+    =
+    \frac
+        { \varphi_u\wedge\varphi_v }
+        { |\varphi_u\wedge\varphi_v| }
+    (u,v)
+\]
+
+Podemos usar sympy para calcular las derivadas y el producto externo.
+Primero \(\varphi_u\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phiv, phiu }\OperatorTok{=}\NormalTok{ sym.symbols(}\StringTok{\textquotesingle{}phiv, phiu\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{phiu }\OperatorTok{=}\NormalTok{ sym.Matrix([x.diff(u),y.diff(u),z.diff(u)])}
+\NormalTok{lp([phiu])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}- v \sin{\left(u \right)}\\v \cos{\left(u \right)}\\a\end{matrix}\right]\]
+
+Ahora, \(\varphi_v\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phiv }\OperatorTok{=}\NormalTok{ sym.Matrix([x.diff(v),y.diff(v),z.diff(v)])}
+\NormalTok{lp([phiv])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}\cos{\left(u \right)}\\\sin{\left(u \right)}\\0\end{matrix}\right]\]
+
+El vector normal es entonces:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{outp }\OperatorTok{=}\NormalTok{ phiu.cross(phiv)}
+\NormalTok{outpnorm }\OperatorTok{=}\NormalTok{ sym.sqrt(outp.dot(outp))}
+
+\NormalTok{lp([sym.simplify(outp}\OperatorTok{/}\NormalTok{outpnorm)])}
+\end{Highlighting}
+\end{Shaded}
+
+\[\left[\begin{matrix}- \frac{a \sin{\left(u \right)}}{\sqrt{a^{2} + v^{2}}}\\\frac{a \cos{\left(u \right)}}{\sqrt{a^{2} + v^{2}}}\\- \frac{v}{\sqrt{a^{2} + v^{2}}}\end{matrix}\right]\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N }\OperatorTok{=}\NormalTok{ sym.simplify(outp}\OperatorTok{/}\NormalTok{outpnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculemos ahora la tangente del ángulo que forman el plano tangente
+\(T_{\phi(u_0,v)S}\) y el eje \(z\).
+
+La tangente entre dos vectores \(u,v\) esta dada por \[
+    \tan(\theta) = \frac{|u\wedge v|}{\langle u,v\rangle},
+\] podemos usar la expresión anterior para calcular la tangente buscada,
+tomando en cuenta que el ángulo entre el vector normal \(N\) y el eje
+\(z\) es complementario al ángulo entre el plano y el eje, la tangente
+buscada esta dada por \[
+    \tan(\theta+\frac{\pi}{2})
+    =
+    \frac{\cos(\theta)}{-\sin(\theta)}
+    =
+    \frac{\langle u,v\rangle}{-|u\wedge v|}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{zunit }\OperatorTok{=}\NormalTok{ sym.Matrix([}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{tang }\OperatorTok{=}\NormalTok{ N.dot(N)}\OperatorTok{/{-}}\NormalTok{sym.sqrt(}
+\NormalTok{           N.cross(zunit).dot(N.cross(zunit))}
+\NormalTok{       )}
+
+\NormalTok{lp([sym.simplify(tang)])}
+\end{Highlighting}
+\end{Shaded}
+
+\[- \frac{1}{\sqrt{\frac{a^{2}}{a^{2} + v^{2}}}}\]
+
+La expresión anterior se puede simplificar a \[
+    - \frac{|v|}{|a|},
+\]
+
+Que es proporcional a \(v\), la distancia del punto \(\varphi(u_0,v)\)
+al eje \(z\).
+
+\onecolumn
+\appendix
+
+\hypertarget{gruxe1ficos}{%
+\section{Gráficos}\label{gruxe1ficos}}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{p1} \caption{\label{p1} Grafico $\varphi(u,v)$ para $a=1$}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+\end{document}

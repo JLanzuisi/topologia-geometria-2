@@ -1,0 +1,276 @@
+---
+title: "Tarea 4"
+subtitle: "Topología y Geometría II"
+author: "Jhonny Lanzuisi"
+date: "23 de Junio de 2022"
+fontsize: 10pt
+lang: es-ES
+documentclass: scrartcl
+classoption: toc=flat
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_caption: true
+    highlight: pygments
+    latex_engine: pdflatex
+    extra_dependencies: ["mlmodern"]
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{python}
+import sympy as sym
+
+def lp(input_list):
+    for i in input_list:
+        print('$$' + sym.latex(i) + '$$')
+```
+
+# Primera pregunta
+
+Veamos los coeficientes de la primera forma fundamental en un punto $p$.
+
+Calculemos primero $\phi_u$:
+
+```{python, results='asis'}
+a,u,v,b = sym.symbols('a,u,v,b')
+
+phi = sym.Matrix([
+              a*u*sym.cosh(v),
+              b*u*sym.sinh(v),
+              u**2
+])
+
+phi_u = sym.Derivative(phi, u)
+
+lp([phi_u.doit()])
+```
+
+Luego $\varphi_v$:
+
+```{python, results='asis'}
+phi_v = sym.Derivative(phi, v)
+
+lp([phi_v.doit()])
+```
+
+El primer coficiente $E(u,u) = \langle \varphi_u,\varphi_u\rangle$ es:
+
+```{python, results='asis'}
+E = phi_u.doit().dot(phi_u.doit())
+
+lp([E])
+```
+
+El segundo coeficiente $F(u,v) = \langle \phi_u,\phi_v\rangle$ es:
+
+```{python, results='asis'}
+F = phi_u.doit().dot(phi_v.doit())
+
+lp([F])
+```
+
+Y el tercer coeficiente $G(v,v) = \langle\phi_v,\phi_v\rangle$ es:
+
+```{python, results='asis'}
+G = phi_v.doit().dot(phi_v.doit())
+
+lp([G])
+```
+
+Entonces, dado un vector $\omega\in T_p S$ escrito en la base de $T_p
+S$ inducida por $\varphi$, $\omega = r\varphi_u + s\varphi_v$, $I(w)$
+viene dado por:
+
+```{python, results='asis'}
+omega,r,s = sym.symbols('omega,r,s')
+
+omega = r*phi_u.doit() + s*phi_v.doit()
+
+lp([omega.dot(omega)])
+```
+
+# Segunda pregunta
+
+Veamos los coeficientes de la primera forma fundamental.
+
+Calculemos primero $\varphi_\rho$:
+
+```{python, results='asis'}
+rho,theta = sym.symbols('rho,theta')
+
+phi = sym.Matrix([
+              rho*sym.cos(theta),
+              rho*sym.sin(theta)
+])
+
+phi_rho = sym.Derivative(phi, rho)
+
+lp([phi_rho.doit()])
+```
+
+Luego $\varphi_\theta$:
+
+```{python, results='asis'}
+phi_theta = sym.Derivative(phi, theta)
+
+lp([phi_theta.doit()])
+```
+
+El primer coficiente $E(\rho,\rho) = \langle
+\varphi_\rho,\varphi_\rho\rangle$ es:
+
+```{python, results='asis'}
+E = phi_rho.doit().dot(phi_rho.doit())
+
+lp([sym.simplify(E)])
+```
+
+El segundo coeficiente $F(\rho,\theta) = \langle
+\phi_\rho,\phi_\theta\rangle$ es:
+
+```{python, results='asis'}
+F = phi_rho.doit().dot(phi_theta.doit())
+
+lp([F])
+```
+
+Y el tercer coeficiente $G(\theta,\theta) = \langle\phi_\theta,\phi_\theta\rangle$
+es:
+
+```{python, results='asis'}
+G = phi_theta.doit().dot(phi_theta.doit())
+
+lp([sym.simplify(G)])
+```
+
+Entonces, dado un vector $\omega\in T_p S$ escrito en la base de $T_p
+S$ inducida por $\varphi$, $\omega = r\varphi_u + s\varphi_v$, $I(w)$
+viene dado por:
+
+```{python, results='asis'}
+omega = r*phi_rho.doit() + s*phi_theta.doit()
+
+lp([sym.simplify(omega.dot(omega))])
+```
+
+# Tercera pregunta
+
+Basta con ver que, al sustituir la expresión para $\nabla f$ dada,
+$$
+	\langle\nabla f, v\rangle_p = df_p(v)
+$$
+para $v = \varphi_u,\varphi_v$, puesto que dado un $v$ cualquiera
+podemos escribir $v = a\varphi_u + b\varphi_v$ y entonces:
+\begin{align*}
+	\langle\nabla f, v\rangle_p
+	&=
+	\langle\nabla f, a\varphi_u + b\varphi_v\rangle_p\\
+	&=
+	a\langle\nabla f, \varphi_u\rangle_p + b\langle\nabla f, \varphi_v\rangle_p.
+\end{align*}
+
+Notemos que $df_p(\varphi_u) = f_u$, por un lado, y que
+\begin{align*}
+	\langle\nabla f, \varphi_u\rangle
+	&=
+	\left\langle
+		\frac{ f_uG - f_vF }{ EG - F^2 } \varphi_u
+		+ \frac{ f_vG - f_uF }{ EG - F^2 } \varphi_v
+		,
+		\varphi_u
+	\right\rangle \\
+	&=
+	\frac{ f_uG - f_vF }{ EG - F^2 } E
+	+ \frac{ f_vG - f_uF }{ EG - F^2 } F\\
+	&=
+	\frac{ f_u (EG - F^2) }{EG - F^2}\\
+	&=
+	f_u\\
+	&=
+	df_p(\varphi_u).
+\end{align*}
+
+Ahora, se puede hacer una verificación similar para $\varphi_v$:
+\begin{align*}
+	\langle\nabla f, \varphi_v\rangle
+	&=
+	\left\langle
+		\frac{ f_uG - f_vF }{ EG - F^2 } \varphi_u
+		+ \frac{ f_vG - f_uF }{ EG - F^2 } \varphi_v
+		,
+		\varphi_v
+	\right\rangle \\
+	&=
+	\frac{ f_uG - f_vF }{ EG - F^2 } F
+	+ \frac{ f_vG - f_uF }{ EG - F^2 } G\\
+	&=
+	\frac{ f_v (EG - F^2) }{EG - F^2}\\
+	&=
+	f_v\\
+	&=
+	df_p(\varphi_v).
+\end{align*}
+
+# Cuarta pregunta
+
+## Primera parte
+
+Supongamos que $S_1$ es orientable. Entonces existe una familia
+de parametrizaciones $\{\varphi_\alpha\}$, $\varphi_\alpha\colon U_\alpha\to S_1$,
+que cubre a $S_1$ tal que si $p\in \varphi_\alpha(U_\alpha)\cap\varphi_\beta(U_\beta)$
+entonces la función de cambio de variable $\varphi_\beta^{-1}\circ\varphi_\alpha$ es tal que
+$\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0$.
+
+Consideremos la familia de parametrizaciones de $S_2$ dada por
+$\{f\circ\varphi_\alpha\}$, $f\circ\varphi_\alpha\colon U_\alpha\to S_2$.
+Entonces si $p\in f\circ\varphi_\alpha(U_\alpha)\cap f\circ\varphi_\beta(U_\beta)$
+la función de cambio de coordenadas viene dada por:
+$$
+	(f\circ\varphi_\beta)^{-1}\circ (f\circ\varphi_\alpha)
+	=
+	\varphi_\beta^{-1}\circ f^{-1}\circ f\circ\varphi_\alpha
+	=
+	\varphi_\beta^{-1}\circ\varphi_\alpha,
+$$
+y $\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0$ como vimos antes.
+Por lo que $S_2$ es orientable.
+
+Si suponemos ahora que $S_2$ es orientable. Entonces existe una familia
+de parametrizaciones $\{\varphi_\alpha\}$, $\varphi_\alpha\colon U_\alpha\to S_2$,
+que cubre a $S_2$ tal que si $p\in \varphi_\alpha(U_\alpha)\cap\varphi_\beta(U_\beta)$
+entonces la función de cambio de variable $\varphi_\beta^{-1}\circ\varphi_\alpha$ es tal que
+$\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0$.
+
+Consideremos la familia de parametrizaciones de $S_1$ dada por
+$\{f^{-1}\circ\varphi_\alpha\}$, $f^{-1}\circ\varphi_\alpha\colon U_\alpha\to S_1$.
+Entonces si $p\in f^{-1}\circ\varphi_\alpha(U_\alpha)\cap f^{-1}\circ\varphi_\beta(U_\beta)$
+la función de cambio de coordenadas viene dada por:
+$$
+	(f^{-1}\circ\varphi_\beta)^{-1}\circ (f^{-1}\circ\varphi_\alpha)
+	=
+	\varphi_\beta^{-1}\circ f\circ f^{-1}\circ\varphi_\alpha
+	=
+	\varphi_\beta^{-1}\circ\varphi_\alpha,
+$$
+y $\det(d(\varphi_\beta^{-1}\circ\varphi_\alpha)) > 0$ como vimos antes.
+Por lo que $S_1$ es orientable.
+
+## Segunda parte
+
+La orientación inducida por $f$ viene dada por la familia
+$\{f\circ\varphi_\alpha\}$, $f\circ\varphi_\alpha\colon U_\alpha\to S_2$,
+del ejercicio anterior.
+
+Como $A$ es un operador lineal $dA = A$ y se sigue que
+$$
+    det(dA) = -1,
+$$
+pues $A$ es el negativo de la matriz identidad.
+Tenemos entonces que el operador $A$ invierte la orientación.

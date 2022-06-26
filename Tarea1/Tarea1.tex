@@ -381,21 +381,13 @@
 
 \begin{document}
     
-    \maketitle
+    \maketitle\tableofcontents
     
     
 
     
     \hypertarget{primera-pregunta}{%
 \section{Primera pregunta}\label{primera-pregunta}}
-
-Sea \(\alpha\colon I \to \mathbb{R}^3\) una curva parametrizada y sea
-\(v\in \mathbb{R}\) un vector fijo. Si \(\alpha'(t)\) es ortogonal a
-\(v\) para todo \(t\in I\) y \(\alpha(0)\) también es ortogonal a \(v\),
-demuestre que \(\alpha(t)\) es ortogonal a \(v\) para todo \(t\in I\).
-
-\hypertarget{soluciuxf3n}{%
-\subsection{Solución}\label{soluciuxf3n}}
 
     Sean \(\alpha_1,\alpha_2,\alpha_3\) funciones
 \(\mathbb{R}\to\mathbb{R}\) tales que: \[
@@ -426,11 +418,8 @@ Ahora integrando respecto de \(t\) en un intervalo cualquiera
     \hypertarget{segunda-pregunta}{%
 \section{Segunda Pregunta}\label{segunda-pregunta}}
 
-\hypertarget{soluciuxf3n}{%
-\subsection{Solución}\label{soluciuxf3n}}
-
 \hypertarget{parametrizada-por-longitud-de-arco}{%
-\subsubsection{Parametrizada por longitud de
+\subsection{Parametrizada por longitud de
 arco}\label{parametrizada-por-longitud-de-arco}}
 
 Basta con revisar que la norma de \(\alpha'\) es \(1\), pues en ese caso
@@ -438,13 +427,22 @@ Basta con revisar que la norma de \(\alpha'\) es \(1\), pues en ese caso
 python.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{166}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Import required libraries}
 \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k+kn}{import} \PY{o}{*}
 \PY{k+kn}{from} \PY{n+nn}{sympy}\PY{n+nn}{.}\PY{n+nn}{vector} \PY{k+kn}{import} \PY{o}{*}
 \PY{k+kn}{from} \PY{n+nn}{sympy}\PY{n+nn}{.}\PY{n+nn}{plotting} \PY{k+kn}{import} \PY{o}{*}
-\PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k+kn}{import} \PY{o}{*}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}
+
+\PY{n}{matplotlib}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pgf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{matplotlib}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pgf.texsystem}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pdflatex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.family}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{serif}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.usetex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{True}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pgf.rcfonts}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{False}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid.alpha}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mf}{0.5}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.autolayout}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{True}\PY{p}{,}
+\PY{p}{\PYZcb{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -456,16 +454,14 @@ negro) los valores \(a = b = 1\), luego (en azul) los valores
 más sencilla la escritura.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{28}{\boxspacing}
+\prompt{In}{incolor}{171}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{r}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{s}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r,a,b,s,x,y,z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{r}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{s}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r,a,b,s,x,y,z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{real}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Subtitute c = sqrt(a\PYZca{}2+b\PYZca{}2) to make computations simpler}
 \PY{n}{x} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{n}{cos}\PY{p}{(}\PY{n}{s}\PY{o}{/}\PY{n}{sqrt}\PY{p}{(}\PY{n}{a}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{b}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \PY{n}{y} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{n}{sin}\PY{p}{(}\PY{n}{s}\PY{o}{/}\PY{n}{sqrt}\PY{p}{(}\PY{n}{a}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{b}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \PY{n}{z} \PY{o}{=} \PY{n}{b}\PY{o}{*}\PY{n}{s}\PY{o}{/}\PY{n}{sqrt}\PY{p}{(}\PY{n}{a}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{b}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
-
-\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}
 
 \PY{n}{p} \PY{o}{=} \PY{n}{plot3d\PYZus{}parametric\PYZus{}line}\PY{p}{(}
     \PY{p}{(}
@@ -487,35 +483,35 @@ más sencilla la escritura.
         \PY{p}{(}\PY{n}{s}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{8}\PY{o}{*}\PY{n}{pi}\PY{p}{)}\PY{p}{,}
     \PY{p}{)}\PY{p}{,}
     \PY{n}{show}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
-    \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grafico de tres espirales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Grafico de tres espirales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
 \PY{p}{)}
 
 \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{line\PYZus{}color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{line\PYZus{}color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{line\PYZus{}color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}
-\PY{n}{p}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\PY{n}{p}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tarea1\PYZus{}files/Tarea1\PYZus{}5\PYZus{}0.pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Tarea1_files/Tarea1_5_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Tarea1_files/Tarea1_5_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
     Calculemos ahora \(\alpha'\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{111}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{r} \PY{o}{=} \PY{n}{Matrix}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{]}\PY{p}{)}
 
-\PY{n}{drds} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{s}\PY{p}{)}
-\PY{n}{drds}
+\PY{n}{d\PYZus{}r\PYZus{}ds} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{s}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}ds}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{6}{}
+\prompt{Out}{outcolor}{111}{}
     
     $\displaystyle \left[\begin{matrix}- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}}}\\\frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}}}\\\frac{b}{\sqrt{a^{2} + b^{2}}}\end{matrix}\right]$
 
@@ -524,29 +520,29 @@ más sencilla la escritura.
     Podemos obtener su norma y simplificar.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{112}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{normdrds} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{drds}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{drds}\PY{p}{)}\PY{p}{)}
-\PY{n}{normdrds}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}ds}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}ds}\PY{p}{)}\PY{p}{)}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{7}{}
+\prompt{Out}{outcolor}{112}{}
     
     $\displaystyle \sqrt{\frac{a^{2} \sin^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{a^{2} + b^{2}} + \frac{a^{2} \cos^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{a^{2} + b^{2}} + \frac{b^{2}}{a^{2} + b^{2}}}$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{113}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{simplify}\PY{p}{(}\PY{n}{normdrds}\PY{p}{)}
+\PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{8}{}
+\prompt{Out}{outcolor}{113}{}
     
     $\displaystyle 1$
 
@@ -555,52 +551,52 @@ más sencilla la escritura.
     Con lo que la norma es \(1\), que es lo que queríamos demostrar.
 
     \hypertarget{curvatura-y-torsiuxf3n}{%
-\subsubsection{Curvatura y torsión}\label{curvatura-y-torsiuxf3n}}
+\subsection{Curvatura y torsión}\label{curvatura-y-torsiuxf3n}}
 
 La curvatura es la norma de la derivada segunda de \(\alpha\) con
 respecto de \(s\). Primero calculamos \(\alpha''\) y luego su norma:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{114}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{ddrdss} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{drds}\PY{p}{,}\PY{n}{s}\PY{p}{)}
-\PY{n}{ddrdss}
+\PY{n}{d\PYZus{}r\PYZus{}dss} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}ds}\PY{p}{,}\PY{n}{s}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}dss}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{9}{}
+\prompt{Out}{outcolor}{114}{}
     
     $\displaystyle \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{a^{2} + b^{2}}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{a^{2} + b^{2}}\\0\end{matrix}\right]$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{115}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{normddrdss} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{ddrdss}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{ddrdss}\PY{p}{)}\PY{p}{)}
-\PY{n}{normddrdss}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}dss}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}dss}\PY{p}{)}\PY{p}{)}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{10}{}
+\prompt{Out}{outcolor}{115}{}
     
     $\displaystyle \sqrt{\frac{a^{2} \sin^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right)^{2}} + \frac{a^{2} \cos^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right)^{2}}}$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{116}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{simplify}\PY{p}{(}\PY{n}{normddrdss}\PY{p}{)}
+\PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{11}{}
+\prompt{Out}{outcolor}{116}{}
     
-    $\displaystyle \sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}}$
+    $\displaystyle \frac{\left|{a}\right|}{a^{2} + b^{2}}$
 
     
 
@@ -611,34 +607,34 @@ la primera derivada del vector binormal. Podemos comparar ambos vectores
 para conseguir ese múltiplo. Calculamos primero el vector normal:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{117}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{normddrdss} \PY{o}{=} \PY{n}{simplify}\PY{p}{(}\PY{n}{normddrdss}\PY{p}{)} \PY{c+c1}{\PYZsh{} Take the second derivative to be its simplified form}
-\PY{n}{n} \PY{o}{=} \PY{n}{ddrdss}\PY{o}{/}\PY{n}{normddrdss}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss} \PY{o}{=} \PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss}\PY{p}{)}
+\PY{n}{n} \PY{o}{=} \PY{n}{d\PYZus{}r\PYZus{}dss}\PY{o}{/}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dss}
 \PY{n}{n}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{12}{}
+\prompt{Out}{outcolor}{117}{}
     
-    $\displaystyle \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\0\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\0\end{matrix}\right]$
 
     
 
     Calculamos ahora el vector tangente usando la primera derivada:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{normdrds} \PY{o}{=} \PY{n}{simplify}\PY{p}{(}\PY{n}{normdrds}\PY{p}{)}
-\PY{n}{t} \PY{o}{=} \PY{n}{drds}\PY{o}{/}\PY{n}{normdrds}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds} \PY{o}{=} \PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds}\PY{p}{)}
+\PY{n}{t} \PY{o}{=} \PY{n}{d\PYZus{}r\PYZus{}ds}\PY{o}{/}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}ds}
 \PY{n}{t}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{13}{}
+\prompt{Out}{outcolor}{118}{}
     
     $\displaystyle \left[\begin{matrix}- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}}}\\\frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}}}\\\frac{b}{\sqrt{a^{2} + b^{2}}}\end{matrix}\right]$
 
@@ -647,7 +643,7 @@ para conseguir ese múltiplo. Calculamos primero el vector normal:
     Podemos entonces calcular el vector binormal y simplificarlo:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{119}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{bi} \PY{o}{=} \PY{n}{t}\PY{o}{.}\PY{n}{cross}\PY{p}{(}\PY{n}{n}\PY{p}{)}
 \PY{n}{bi}
@@ -655,54 +651,54 @@ para conseguir ese múltiplo. Calculamos primero el vector normal:
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{14}{}
+\prompt{Out}{outcolor}{119}{}
     
-    $\displaystyle \left[\begin{matrix}\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\\- \frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\\\frac{a^{2} \sin^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}} + \frac{a^{2} \cos^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\\- \frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\\\frac{a^{2} \sin^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|} + \frac{a^{2} \cos^{2}{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\end{matrix}\right]$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{120}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{simplify}\PY{p}{(}\PY{n}{bi}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{15}{}
+\prompt{Out}{outcolor}{120}{}
     
-    $\displaystyle \left[\begin{matrix}\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\\- \frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\\\frac{a^{2}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{\frac{3}{2}}}\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\\- \frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\\\frac{a^{2}}{\sqrt{a^{2} + b^{2}} \left|{a}\right|}\end{matrix}\right]$
 
     
 
     Solo falta la derivada del vector binormal:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{121}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{bi} \PY{o}{=} \PY{n}{simplify}\PY{p}{(}\PY{n}{bi}\PY{p}{)}
-\PY{n}{dbids} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{bi}\PY{p}{,}\PY{n}{s}\PY{p}{)}
-\PY{n}{dbids}
+\PY{n}{d\PYZus{}bi\PYZus{}ds} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{bi}\PY{p}{,}\PY{n}{s}\PY{p}{)}
+\PY{n}{d\PYZus{}bi\PYZus{}ds}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{16}{}
+\prompt{Out}{outcolor}{121}{}
     
-    $\displaystyle \left[\begin{matrix}\frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{2}}\\\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{2}}\\0\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}\frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right) \left|{a}\right|}\\\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right) \left|{a}\right|}\\0\end{matrix}\right]$
 
     
 
     Podemos entonces comparar \(b'\) con \(n\):
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{122}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{display}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{dbids}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{d\PYZus{}bi\PYZus{}ds}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    $\displaystyle \left[\begin{matrix}\frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{2}}\\\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)^{2}}\\0\end{matrix}\right] = \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\0\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}\frac{a b \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right) \left|{a}\right|}\\\frac{a b \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left(a^{2} + b^{2}\right) \left|{a}\right|}\\0\end{matrix}\right] = \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\0\end{matrix}\right]$
 
     
     De donde podemos ver que la torsión es: \[
@@ -710,132 +706,231 @@ para conseguir ese múltiplo. Calculamos primero el vector normal:
 \]
 
     \hypertarget{plano-osculante}{%
-\subsubsection{Plano osculante}\label{plano-osculante}}
+\subsection{Plano osculante}\label{plano-osculante}}
 
 En la ecuación del plano en el punto \(s = (s_1,s_2,s_3)\): \[
     a (x-s_1) + b (y-s_2) + c(z-s_3),
 \] los coeficientes \(a,b,c\) coinciden con los del vector normal:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{123}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{n}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{18}{}
+\prompt{Out}{outcolor}{123}{}
     
-    $\displaystyle \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\sqrt{\frac{a^{2}}{\left(a^{2} + b^{2}\right)^{2}}} \left(a^{2} + b^{2}\right)}\\0\end{matrix}\right]$
+    $\displaystyle \left[\begin{matrix}- \frac{a \cos{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\- \frac{a \sin{\left(\frac{s}{\sqrt{a^{2} + b^{2}}} \right)}}{\left|{a}\right|}\\0\end{matrix}\right]$
 
     
 
     \hypertarget{tercera-pregunta}{%
-\subsection{Tercera pregunta}\label{tercera-pregunta}}
+\section{Tercera pregunta}\label{tercera-pregunta}}
 
     Veamos primero el trazo de la curva \(\alpha\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{41}{\boxspacing}
+\prompt{In}{incolor}{165}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{t} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{matplotlib}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lines.linewidth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{2}\PY{p}{,}
+\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{n}{t} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{real}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
 \PY{n}{x} \PY{o}{=} \PY{n}{t}
-\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{o}{+}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+\PY{n}{y} \PY{o}{=} \PY{n}{cosh}\PY{p}{(}\PY{n}{t}\PY{p}{)}
 
-\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{8}
-
-\PY{n}{plot\PYZus{}parametric}\PY{p}{(}
+\PY{n}{p2} \PY{o}{=} \PY{n}{plot\PYZus{}parametric}\PY{p}{(}
     \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+    \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Catenaria}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+    \PY{n}{show}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
 \PY{p}{)}
+
+\PY{n}{p2}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tarea1\PYZus{}files/Tarea1\PYZus{}33\PYZus{}0.pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Tarea1_files/Tarea1_33_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Tarea1_files/Tarea1_33_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{41}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-<sympy.plotting.plot.Plot at 0x7f02444de680>
-\end{Verbatim}
-\end{tcolorbox}
-        
     \hypertarget{parametrizaciuxf3n-por-longitud-de-arco}{%
-\subsubsection{Parametrización por longitud de
+\subsection{Parametrización por longitud de
 arco}\label{parametrizaciuxf3n-por-longitud-de-arco}}
 
 Calculamos primero \(\alpha'\):
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{51}{\boxspacing}
+\prompt{In}{incolor}{125}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{dxdt} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{)}
-\PY{n}{dydt} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{t}\PY{p}{)}
-\PY{n}{display}\PY{p}{(}\PY{n}{dxds}\PY{p}{,}\PY{n}{dyds}\PY{p}{)}
+\PY{n}{r} \PY{o}{=} \PY{n}{Matrix}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{]}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}dt} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{t}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}dt}
 \end{Verbatim}
 \end{tcolorbox}
-
-    $\displaystyle 1$
+ 
+            
+\prompt{Out}{outcolor}{125}{}
+    
+    $\displaystyle \left[\begin{matrix}1\\\sinh{\left(t \right)}\end{matrix}\right]$
 
     
-    $\displaystyle \frac{e^{t}}{2} - \frac{e^{- t}}{2}$
 
-    
     Luego, su norma:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{52}{\boxspacing}
+\prompt{In}{incolor}{126}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{normdrdt} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dxdt}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{dydt}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
-\PY{n}{normdrdt}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dt} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}dt}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}dt}\PY{p}{)}\PY{p}{)}
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dt}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{52}{}
+\prompt{Out}{outcolor}{126}{}
     
-    $\displaystyle \sqrt{\left(\frac{e^{t}}{2} - \frac{e^{- t}}{2}\right)^{2} + 1}$
+    $\displaystyle \sqrt{\sinh^{2}{\left(t \right)} + 1}$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{44}{\boxspacing}
+\prompt{In}{incolor}{127}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{simplify}\PY{p}{(}\PY{n}{normdrdt}\PY{p}{)}
+\PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}dt}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{44}{}
+\prompt{Out}{outcolor}{127}{}
     
-    $\displaystyle \frac{\sqrt{2 \cosh{\left(2 t \right)} + 2}}{2}$
+    $\displaystyle \cosh{\left(t \right)}$
 
     
+
+    Como \(\cosh\) es siempre positiva calcular la longitud de arco equivale
+a integrar la función \(\cosh(t)\) en el intervalo \((0,t)\) que es
+conveniente puesto que \(\sinh(0)=0\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{56}{\boxspacing}
+\prompt{In}{incolor}{128}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{integrate}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{n}{dxdt}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{dydt}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+\PY{n}{u} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{u}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{real}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{integrate}\PY{p}{(}\PY{n}{cosh}\PY{p}{(}\PY{n}{u}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{u}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
  
             
-\prompt{Out}{outcolor}{56}{}
+\prompt{Out}{outcolor}{128}{}
     
-    $\displaystyle \frac{\int \sqrt{e^{2 t} + 2 + e^{- 2 t}}\, dt}{2}$
+    $\displaystyle \sinh{\left(t \right)}$
+
+    
+
+    Podemos entonces despejar \(t\) en función de \(s\) usando la inversa
+del seno hiperbólico.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{129}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{display}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{asinh}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    $\displaystyle t = \operatorname{asinh}{\left(s \right)}$
+
+    
+    La reparametrización por longitud de arco viene dada entonces por
+\(\alpha(L^{-1}(s))\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{130}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r\PYZus{}by\PYZus{}arc\PYZus{}length} \PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{n}{subs}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{asinh}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+\PY{n}{r\PYZus{}by\PYZus{}arc\PYZus{}length}
+\end{Verbatim}
+\end{tcolorbox}
+ 
+            
+\prompt{Out}{outcolor}{130}{}
+    
+    $\displaystyle \left[\begin{matrix}\operatorname{asinh}{\left(s \right)}\\\sqrt{s^{2} + 1}\end{matrix}\right]$
+
+    
+
+    Podemos revisar rápidamente que la norma de la derivada es \(1\):
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{131}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}ds} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{r\PYZus{}by\PYZus{}arc\PYZus{}length}\PY{p}{,} \PY{n}{s}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}ds}
+\end{Verbatim}
+\end{tcolorbox}
+ 
+            
+\prompt{Out}{outcolor}{131}{}
+    
+    $\displaystyle \left[\begin{matrix}\frac{1}{\sqrt{s^{2} + 1}}\\\frac{s}{\sqrt{s^{2} + 1}}\end{matrix}\right]$
 
     
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{132}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{simplify}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}ds}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}ds}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+ 
+            
+\prompt{Out}{outcolor}{132}{}
+    
+    $\displaystyle 1$
 
+    
+
+    \hypertarget{curvatura}{%
+\subsection{Curvatura}\label{curvatura}}
+
+Como \(\alpha\) ya esta parametrizada por longitud de arco, basca con
+ver el módulo de su segunda derivada:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{133}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss} \PY{o}{=} \PY{n}{diff}\PY{p}{(}\PY{n}{r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}ds}\PY{p}{,} \PY{n}{s}\PY{p}{)}
+\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss}
+\end{Verbatim}
+\end{tcolorbox}
+ 
+            
+\prompt{Out}{outcolor}{133}{}
+    
+    $\displaystyle \left[\begin{matrix}- \frac{s}{\left(s^{2} + 1\right)^{\frac{3}{2}}}\\- \frac{s^{2}}{\left(s^{2} + 1\right)^{\frac{3}{2}}} + \frac{1}{\sqrt{s^{2} + 1}}\end{matrix}\right]$
+
+    
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{134}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{135}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kappa} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{kappa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{Eq}\PY{p}{(}\PY{n}{kappa}\PY{p}{,}\PY{n}{simplify}\PY{p}{(}\PY{n}{norm\PYZus{}d\PYZus{}r\PYZus{}by\PYZus{}arc\PYZus{}length\PYZus{}dss}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    $\displaystyle \kappa = \frac{1}{s^{2} + 1}$
+
+    
 
     % Add a bibliography block to the postdoc
     

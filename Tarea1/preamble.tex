@@ -6,7 +6,7 @@
 \subject{Topología y Geometría II}
 \subtitle{Curvas paramétricas, curvatura, torsión}
 
-\usepackage{inconsolata}
+\usepackage[scale=.85]{plex-mono}
 
 \KOMAoptions{parskip=half}
 
@@ -25,4 +25,9 @@
 
 \chead{\MyTitle}
 
+\usepackage{etoolbox} % for '\AtBeginEnvironment' macro
+\AtBeginEnvironment{matrix}{\everymath{\displaystyle}}
+
 \newcommand{\iprod}[2]{\langle#1,#2\rangle}
+
+\renewcommand{\adjustimage}[2]{\includegraphics{#2}}

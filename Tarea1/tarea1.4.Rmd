@@ -1,0 +1,96 @@
+---
+title: "Tarea 1, ejercicio 4"
+author: "Jhonny Lanzuisi"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: united
+    highlight: monochrome
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1
+
+Dado que la longitud de arco $s(t)$ es:
+$$
+  \int_{t_o}^t |\alpha'| dt,
+$$
+se sigue por el teorema fundamental del cálculo que:
+$$
+  \frac{ds}{dt} = |\alpha'|.
+$$
+
+Entonces, por el teorema de la función inversa, se tiene que:
+$$
+  \frac{dt}{ds} = \frac{1}{|\alpha'|}.
+$$
+
+Para la segunda derivada es conveniente escribir $|\alpha'| = \sqrt{\langle\alpha,\alpha\rangle}.$ Tenemos que:
+$$
+  \frac{d}{dt}\left(\frac{dt}{ds}\right) = - \frac{\langle\alpha',\alpha''\rangle}{|\alpha'|^3},
+$$
+y, finalmente,
+$$
+  \frac{d^2t}{ds^2} = \frac{d}{dt}\left(\frac{dt}{ds}\right)\frac{dt}{ds} 
+    = 
+      - \frac{\langle\alpha',\alpha''\rangle}{|\alpha'|^3} \left(\frac{1}{|\alpha'|}\right) 
+    = 
+      - \frac{\langle\alpha',\alpha''\rangle}{|\alpha'|^4}.
+$$
+
+# 2
+
+La primera derivada de $\alpha$ puede expresarse respecto de $T$, el vector unitario tangente,
+$$
+  T = \frac{\alpha'}{|\alpha'|} \implies \alpha' = |\alpha'| T.
+$$
+Podemos derivar la expresión anterior para obtener la segunda derivada de $\alpha$
+$$
+  \alpha'' = |\alpha'|'T + |\alpha'|T'= |\alpha'|'T + |\alpha'|^2\kappa N
+$$
+donde el lado derecho es consecuencia de las ecuaciones de frenet y $N$ es el vector normal a la curva.
+
+El producto cruz es entonces:
+$$
+  \alpha'\wedge\alpha'' = |\alpha'||\alpha'|'(T\wedge T) + |\alpha'|^3\kappa(N\wedge T)
+$$
+como el producto cruz de un vector con el mismo es cero y $N\wedge T = B$, el vector binormal,
+la expresión anterior se reduce a:
+$$
+  \alpha'\wedge\alpha'' = |\alpha'|^3\kappa B. \tag{$\ast$}
+$$
+Si tomamos la norma a ambos lados de la expresión anterior, teniendo en cuenta que $B$ es unitario,
+llegamos a que:
+$$
+\kappa = \frac{|\alpha'\wedge\alpha''|}{|\alpha'|^3}. \tag{$\ast\ast$}
+$$
+
+# 3
+
+Caculemos primero la tercera derivada de $\alpha$, partiendo de la expresión para $\alpha''$
+hallada anteriormente:
+$$
+  \alpha''' = |\alpha'|''T +|\alpha'|'T' + (|\alpha'|^2\kappa)' N + |\alpha'|^2\kappa N'.
+$$
+
+Dado que $B$ es perpendicular a $T,T',N$,
+$$
+  \langle\alpha''',B\rangle = |\alpha'|^2\kappa\langle B,N'\rangle = |\alpha'|^3\kappa\tau,
+$$
+de donde
+$$
+  \tau = \frac{\langle\alpha''',B\rangle}{|\alpha'|^3\kappa}.
+$$
+Al despejar $B$ de ($\ast$) y usar la expresión para $\kappa$ en ($\ast\ast$), la expresión anterior se reduce a:
+$$
+  \tau = \frac{\langle\alpha''',\alpha'\wedge\alpha''\rangle}{|\alpha'\wedge\alpha''|^2}.
+$$
+
+

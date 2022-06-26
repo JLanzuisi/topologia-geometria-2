@@ -1,0 +1,256 @@
+---
+title: "Tarea 3"
+subtitle: "Topología y Geometría II"
+author: "Jhonny Lanzuisi"
+date: "19 de Junio de 2022"
+fontsize: 10pt
+lang: es-ES
+documentclass: scrartcl
+classoption: twocolumn,DIV=18,toc=flat
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    fig_caption: true
+    highlight: pygments
+    latex_engine: pdflatex
+    extra_dependencies: ["mlmodern"]
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{python}
+# Configuración de python y gráficos
+import sympy as sym
+import numpy as np
+import matplotlib.style
+import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.style.use('seaborn')
+
+matplotlib.rcParams.update({
+        'figure.autolayout': True,
+})
+
+def lp(input_list):
+    for i in input_list:
+        print('$$' + sym.latex(i) + '$$')
+```
+
+# Primera pregunta
+
+Sean
+$$
+    E = \left\{\frac{x^2}{a} + \frac{y^2}{b} + \frac{z^2}{c} = 1\right\}
+    \quad
+    \text{y}
+    \quad
+    S^2 = \{x^2 + y^2 + z^2 = 1\}
+$$
+el elipsoide y la esfera, respectivamente.
+
+Queremos hallar una función $f\colon S^2\to E$. Esto
+es lo mismo que decir que $f$ debe cumplir:
+$$
+	\frac{f_x}{a^2} + \frac{f_y}{b^2} + \frac{f_z}{c^2} = 1.
+$$
+
+Si hacemos $f_x=ax, f_y=by, f_z=cz$ entonces la ecuación
+anterior se cumple, tomando en cuenta que $(x,y,z)\in S^2$.
+
+Tenemos entonces la función $f$ definida por:
+$$
+    f(x,y,z) = (ax, by, cz).
+$$
+
+Esta función es claramente continua y diferenciable, pues sus componentes lo son.
+Más aún, su inversa
+$$
+	f^{-1}(x,y,z) = \left(\frac{x}{a}, \frac{y}{b}, \frac{z}{c}\right)
+$$
+es igualmente continua y diferenciable siempre que $a,c,b$ no sea
+ninguno cero, lo cual se cumple para todos los puntos del dominio.
+
+Por último, notemos que $f$ es un mapa lineal y $\ker f = \{0\}$
+lo que nos dice que $f$ es biyectiva.
+
+Tenemos entonces que $f$ es un difeomorfismo de $S^2$ a $E$.
+
+# Segunda pregunta
+
+El mapa $A$ es lineal puesto que sus componentes son mapas lineales.
+Un mapa lineal entre espacios de dimensión finita siempre es diferenciable,
+por lo que $A$ es diferenciable.
+
+También, $A^{-1}$ es un mapa lineal puesto que $A=A^{-1}$.
+
+Por último el $\ker A = \{0\}$, por lo que $A$ tiene rango máximo y es biyectiva.
+
+Se tiene entonces que $A$ es un difeomorfismo.
+
+# Tercera pregunta
+
+Hace falta comprobar las tres propiedades de toda relación
+de equivalencia.
+
+## Reflexividad
+
+Sea $S$ una superficie regular y consideremos el difeomorfismo
+dado por la función identidad.
+Es claro que la identidad es biyectiva y que su inversa es diferenciable.
+Tenemos entonces que $S$ es difeomorfa a si misma, que es lo que
+queríamos demostrar.
+
+## Simetría
+
+Sea $S_1,S_2$ superficies regulares difeomorfas por una función $f$.
+Entonces por definición $f^{-1}$ es diferenciable y al ser $f$ una biyección
+$f^{-1}$ también lo es.
+Se cumple entonces que $S_1$ es difeomorfo a $S_2$ (por $f$) si, y solo si,
+$S_2$ es difeomorfo a $S_1$ (por $f^{-1}$).
+
+## Transitividad
+
+Sean $S_1,S_2,S_3$ superficies regulares. Sean $f\colon S_1\to S_2$
+y $g\colon S_2\to S_3$ difeomorfismos.
+Entonces la composición $g\circ f\colon S_1\to S_3$ es un difeomorfismo,
+pues el hecho de que $f,g$ y $f^{-1},g^{-1}$ sean diferenciables
+implica que $g\circ f$ y su inversa $f^{-1}\circ g^{-1}$ son diferenciables,
+además la biyectividad de $f,g$ implica la biyectividad de la composición.
+
+# Cuarta pregunta
+
+Sea $p_0=(x_0, y_0, z_0)$. Basta con ver que $\mathrm{d}f_{p_0}$ es
+perpendicular al plano tangente, pues la ecuación del plano esta dada
+por un vector normal y un punto del plano.
+
+
+Por la definición del plano tangente existe
+una curva $\alpha:(-\epsilon,\epsilon)\to S$ tal que $\alpha(0) = p_0$
+y $\alpha'(0)$ es un vector que esta en el plano tangente.
+
+Notemos que
+$$
+	f\circ\alpha = 0
+$$
+puesto que la imagen de $f$ para cualquier punto de $S$ es cero y el
+codominio de $\alpha$ es $S$.
+
+Podemos entonces, usando la regla de la cadena, calcular $(f\circ\alpha)'(0)$:
+$$
+	(f\circ\alpha)'(0) = \langle\mathrm{d}f_{\alpha(0)},\alpha'(0)\rangle,
+$$
+pero como $f\circ\alpha = 0$ la derivada anterior también debe ser cero.
+
+Se sigue entonces que $\mathrm{d}f_{p_0}$ es perpendicular a $\alpha'(0)$
+y por lo tanto al plano tangente.
+
+# Quinta pregunta
+
+El dibujo de $\varphi$ se encuentra en la figura \ref{p1}.
+```{python}
+x,y,z,u,v,a = sym.symbols('x,y,z,u,v,a')
+
+x = v*sym.cos(u)
+y = v*sym.sin(u)
+z = a*u
+
+graph = sym.plotting.plot3d_parametric_surface(
+    x,y,z.subs(a,1),
+    (u,-3,3),
+    (v,-3,3),
+    show=False,
+)
+
+graph.save('p1.pdf')
+```
+
+El vector normal viene dado por
+$$
+	N(u,v)
+	=
+	\frac
+	    { \varphi_u\wedge\varphi_v }
+	    { |\varphi_u\wedge\varphi_v| }
+	(u,v)
+$$
+
+Podemos usar sympy para calcular las derivadas y el producto externo.
+Primero $\varphi_u$:
+```{python, results='asis'}
+phiv, phiu = sym.symbols('phiv, phiu')
+
+phiu = sym.Matrix([x.diff(u),y.diff(u),z.diff(u)])
+lp([phiu])
+```
+
+Ahora, $\varphi_v$:
+```{python, results='asis'}
+phiv = sym.Matrix([x.diff(v),y.diff(v),z.diff(v)])
+lp([phiv])
+```
+
+El vector normal es entonces:
+```{python, results='asis'}
+outp = phiu.cross(phiv)
+outpnorm = sym.sqrt(outp.dot(outp))
+
+lp([sym.simplify(outp/outpnorm)])
+
+N = sym.simplify(outp/outpnorm)
+```
+
+Calculemos ahora la tangente del ángulo que forman
+el plano tangente $T_{\phi(u_0,v)S}$ y
+el eje $z$.
+
+La tangente entre dos vectores $u,v$ esta dada por
+$$
+	\tan(\theta) = \frac{|u\wedge v|}{\langle u,v\rangle},
+$$
+podemos usar la expresión anterior para calcular la tangente
+buscada, tomando en cuenta que el ángulo entre
+el vector normal $N$ y el eje $z$ es complementario
+al ángulo entre el plano y el eje, la tangente
+buscada esta dada por
+$$
+	\tan(\theta+\frac{\pi}{2})
+	=
+	\frac{\cos(\theta)}{-\sin(\theta)}
+	=
+	\frac{\langle u,v\rangle}{-|u\wedge v|}
+$$
+
+```{python, results='asis'}
+
+zunit = sym.Matrix([0,0,1])
+
+tang = N.dot(N)/-sym.sqrt(
+           N.cross(zunit).dot(N.cross(zunit))
+       )
+
+lp([sym.simplify(tang)])
+```
+
+La expresión anterior se puede simplificar a
+$$
+	- \frac{|v|}{|a|},
+$$
+
+Que es  proporcional a $v$,
+la distancia del punto $\varphi(u_0,v)$
+al eje $z$.
+
+\onecolumn
+\appendix
+# Gráficos
+
+```{r, echo=FALSE, out.width='100%', fig.cap="\\label{p1} Grafico $\\varphi(u,v)$ para $a=1$"}
+knitr::include_graphics("p1.pdf")
+```
